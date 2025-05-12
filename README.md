@@ -6,7 +6,7 @@ CS6513_Group_Project
 - `main.py`: The main Streamlit application file. This is the entry point for the frontend of the Intelligent Information Aggregation Engine.
 - `QAYouTubeSearchClient.py`: A client module to interact with the backend QA and YouTube search services.
 - `embedding_search_backend/`: Directory containing the backend logic for embedding-based search for QA and YouTube videos.
-- `data_process/`: Directory likely containing scripts or modules for data preprocessing and preparation.
+- `data_process/`: Directory containing scripts or modules for data preprocessing and preparation using spark.
 - `README.md`: This file, providing an overview of the project.
 
 ## `main.py` Overview
