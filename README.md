@@ -72,7 +72,7 @@ These data processing pipelines create the vector embeddings that enable both te
 
 ## Startup Sequence
 
-To run the application, please follow these steps in order:
+To run the search engine application based on the embeddings and faiss indices generated, please follow these steps in order:
 
 1.  **Configure and Start Backend Service:**
     *   Open the `embedding_search_backend/Faiss_server.ipynb` notebook.
