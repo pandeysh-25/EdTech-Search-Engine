@@ -23,6 +23,53 @@ Key functionalities include:
 
 The application aims to provide users with a quick and comprehensive understanding of their queries by aggregating information from different sources and summarizing key insights.
 
+## Data Processing Pipelines
+
+The `data_process/` directory contains critical pipelines for preprocessing and embedding generation, which form the foundation of the search capabilities. These notebooks create the vector embeddings that power the semantic search functionality in the backend.
+
+### QA Dataset Processing
+
+The `data_process/QA_dataset_process/` directory contains scripts for processing question-answer datasets:
+
+- **`QA_text_embed.ipynb`**: This notebook processes QA data and generates embeddings for semantic search.
+  - **Input**: Parquet files containing question-answer pairs (`data_qa_combined.parquet`)
+  - **Process**: 
+    1. Loads QA data from Parquet files
+    2. Combines Question and Answer text with appropriate formatting
+    3. Generates BERT sentence embeddings for the combined text using SparkNLP
+    4. Stores both the embeddings and metadata in Parquet format
+    5. Builds a FAISS index (Fast Approximate Nearest Neighbor Search) for efficient similarity search
+  - **Output**:
+    - `qa_combined_embeddings.parquet`: Contains the QA data with embedding vectors
+    - `qa_combined_embeddings.index`: FAISS index file for rapid vector similarity search
+
+### YouTube Dataset Processing
+
+The `data_process/Youtube_dataset_process/` directory contains scripts for processing YouTube video data:
+
+- **`Video_transcripts&titles_embed.ipynb`**: Processes video metadata and generates combined embeddings.
+  - **Input**: JSON files containing YouTube video transcripts and titles
+  - **Process**:
+    1. Loads and parses JSON data containing video transcripts and titles
+    2. Generates separate embeddings for video titles and transcripts
+    3. Creates weighted average embeddings combining title (70%) and transcript (30%) vectors
+    4. Builds a FAISS index for efficient search through video content
+  - **Output**:
+    - `combined_video_embeddings.parquet`: Video metadata with combined embedding vectors
+    - `combined_video_embeddings.index`: FAISS index for video content search
+
+- **`Video_frame_embed_part1.ipynb` & `Video_frame_embed_part2.ipynb`**: Generate embeddings for video frames for visual search.
+  - **Input**: YouTube video IDs and frames extracted from videos
+  - **Process**:
+    1. Uses CLIP (Contrastive Language-Image Pre-Training) model to generate embeddings for video frames
+    2. Processes batches of video frames to create visual embeddings
+    3. Builds FAISS indices for visual similarity search
+  - **Output**:
+    - `video_embeddings.index`: FAISS index containing video frame embeddings
+    - `metadata.pkl`: Metadata mapping embeddings to their respective videos
+
+These data processing pipelines create the vector embeddings that enable both text-based and visual semantic search functionality. The embedding models convert text and images into high-dimensional vectors that capture semantic meaning, allowing the application to find content similar to user queries even when exact keyword matches aren't present.
+
 ## Startup Sequence
 
 To run the application, please follow these steps in order:
