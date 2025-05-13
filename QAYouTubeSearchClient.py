@@ -11,7 +11,7 @@ class QAYouTubeSearchClient:
             base_url (str): The base URL of the combined QA and YouTube search service 
                           (e.g., your ngrok URL).
         """
-        self.base_url = base_url.rstrip('/') # Ensure no trailing slash
+        self.base_url = base_url.rstrip('/')
         self.search_endpoint = f"{self.base_url}/search"
 
     def search(self, query_text: str, k: int = 5):
@@ -39,7 +39,6 @@ class QAYouTubeSearchClient:
             if isinstance(results_dict, dict) and \
                'qa_results' in results_dict and isinstance(results_dict['qa_results'], list) and \
                'yt_results' in results_dict and isinstance(results_dict['yt_results'], list):
-                # print(f"Successfully received results: \n{results_dict}")
                 return results_dict
             else:
                 print("Error: Response JSON does not have the expected structure ('qa_results' and 'yt_results' as lists).")
@@ -52,8 +51,7 @@ class QAYouTubeSearchClient:
 
 # --- Example Usage for Combined QA & YouTube Service ---
 if __name__ == "__main__":
-    # IMPORTANT: Update this URL to the one provided by your new combined service
-    current_ngrok_url = "https://cs6513edu.ngrok.app" # Example from previous screenshot
+    current_ngrok_url = "https://novel-osprey-uncommon.ngrok-free.app"
     
     print(f"Attempting to connect to Combined QA & YouTube Search Service at: {current_ngrok_url}")
     client = QAYouTubeSearchClient(base_url=current_ngrok_url)
