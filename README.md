@@ -40,4 +40,8 @@ To run the application, please follow these steps in order:
     *   Ensure the `PRESET_BASE_URL` in `main.py` points to the public URL provided by the ngrok tunnel of your backend service (from `Faiss_server.ipynb` in step 1). For example: `PRESET_BASE_URL = "https://your-chosen-domain.ngrok-free.app"`
     *   Run the Streamlit application: `streamlit run main.py`
 
+**Dependencies:**
+*   The `requirements.txt` file in the root directory lists the dependencies for the frontend application (`main.py` and `QAYouTubeSearchClient.py`). You can install them using: `pip install -r requirements.txt`
+*   For the backend service (`embedding_search_backend/Faiss_server.ipynb`), please follow the `pip install` instructions within the notebook cells to install necessary packages like `pyngrok`, `flask`, `pyspark`, `spark-nlp`, and `faiss-cpu` in the notebook's environment.
+
 Ensure all dependencies are installed as per the project requirements before starting the services.
